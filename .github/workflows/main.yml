@@ -12,4 +12,7 @@ jobs:
      steps: 
        - name: print a welcome message 
          run: echo " welcome to our youssef taha work flow " 
-         
+       - name: checkout repository #b3ml checkout ll repo
+         uses: actions/checkout@v5.0.0
+       - name: list repo files 
+         run: ls -la 
