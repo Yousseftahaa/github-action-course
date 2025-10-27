@@ -16,10 +16,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
+
+      - name: Install deps
+        run: npm ci
 
       - name: Run tests
         run: npm test
