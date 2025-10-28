@@ -1,0 +1,28 @@
+name: hybrid job example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hybrid_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a command in Ubuntu VM
+        run: echo "This runs on the Ubuntu VM"
+
+      - name: Run inside an Alpine container
+        uses: docker://alpine:3.14 # The image must be accessible without authentication
+        with:
+          entrypoint: /bin/sh
+          args: |
+            -c "echo 'This step runs inside an Alpine container'"
+
+      - name: Run another command in Ubuntu VM
+        run: echo "Back to the VM"
+
+      - name: Run inside a Python container
+        uses: docker://python:3.9
+        with:
+          entrypoint: /bin/bash
+          args: |
+            -c "echo 'This step runs inside a Python container'"
